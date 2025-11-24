@@ -3,45 +3,38 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+            MyApplicationTheme{
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // Create our list of fake data
+                    val fakePlaces = listOf(
+                        Place(id=1,"Secret Garden Cafe", "A cozy cafe hidden behind a flower shop."),
+                        Place(id=2,"The Old Watchtower", "Historic ruin with a panoramic view of the city."),
+                        Place(id=3,"Riverbend Dog Park", "A spacious off-leash park by the water."),
+                        Place(id=4,"Art Alley", "An alleyway filled with vibrant street art murals."),
+                        Place(id=5,"The Nook Bookstore", "A tiny, independent bookstore with rare finds.")
                     )
+
+                    // Display our main screen and pass the fake data to it
+                    LocalDiscoverScreen(places = fakePlaces)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
-    }
-}
+
+
