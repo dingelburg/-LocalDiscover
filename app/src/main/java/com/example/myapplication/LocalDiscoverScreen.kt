@@ -31,7 +31,7 @@ fun LocalDiscoverScreen(places: List<Place>) {
         }
     }
 }
-// --- ADD THE CODE BELOW THIS LINE, AT THE END OF THE FILE ---
+
 
 
 
